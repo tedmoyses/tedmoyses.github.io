@@ -1,8 +1,36 @@
+<html>
+  <head>
+    <title>Ted Moyses - Welcome</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <style>
+          </style>
+  </head>
+  <body>
+    <div class="navbar">
+  <a href="/" title="Ted Moyses" class="brand">Ted Moyses</a>
+  <img src="assets/images/menu.svg" alt="responsive menu toggle" id="menu-icon"/>
+  <nav>
+      <a href="/history.html">history</a>
+      <a href="/projects.html">projects<a/>
+      <a href="/thoughts.html">thoughts</a>
+  </nav>
+</div>
 
-@extends('layout')
-@section('title', 'Welcome')
-@section('content')
-
+<header>
+  <h1>Hi, I'm Ted Moyses!</h1>
+  <p>Dev | Tinkerer | Breaker of things</p>
+  <a href="https://github.com/tedmoyses">
+    <svg viewbox="0 0 67 67">
+      <use xlink:href="/assets/images/if_github_circle_color_107173.svg#Layer_1" x="0" y="0"></use>
+    </svg>
+  </a>
+  <a href="https://twitter.com/tedmoyses"><img src="/assets/images/if_twitter_circle_black_107155.svg" /></a>
+  <a href="https://uk.linkedin.com/in/ted-moyses-b3285020"><img src="/assets/images/if_51-linkedin_104452.svg" /></a>
+</header>
+    <div class="container">
+      
 <h2>Projects</h2>
 
 <p>Here i have listed some of the side projects i am working on and perhaps some ideas for future projects to. These are almost exclusively used as learning exercises but some may see production use</p>
@@ -32,4 +60,7 @@ This is a design for a paper aircraft to print on A4 card and assemble with glue
   This started as a requirement for gathering information from a user in a browser and posting it to a destination. It has since sprawled in to an abstract schema for asking questions and collecting answers that can be integrated as a third party widget/component.
 </p>
 
-@endsection
+    </div>
+    <script src="/assets/js/site.js" ></script>
+  </body>
+</html>
