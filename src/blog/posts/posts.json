@@ -1,0 +1,4 @@
+{
+  "layout": "post.njk",
+  "permalink": "/blog/{{ date | date('YYYY/MM/DD') }}/{{ title | slugify }}/"
+}

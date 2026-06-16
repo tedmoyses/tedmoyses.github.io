@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title if title else "Ted Moyses" }} - Ted Moyses</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231a1a1a'/><text x='16' y='22' font-size='18' text-anchor='middle' fill='%23fafafa' font-family='system-ui' font-weight='600'>T</text></svg>">
+</head>
+<body>
+  {% include "nav.njk" %}
+  <main class="container">
+    {{ content | safe }}
+  </main>
+  <footer class="footer">
+    <p>&copy; {{ now | date("YYYY") }} Ted Moyses</p>
+  </footer>
+  <script src="/assets/js/site.js"></script>
+</body>
+</html>

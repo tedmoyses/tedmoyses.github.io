@@ -1,0 +1,9 @@
+---
+layout: layout.njk
+---
+
+<article class="content-section">
+  <p class="blog-date">{{ date | date("YYYY/MM/DD") }}</p>
+  <h2>{{ title }}</h2>
+  {{ content | safe }}
+</article>
