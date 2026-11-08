@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+---
+<article class="project-detail">
+  <header class="page-intro">
+    <div class="meta-mono subhead"><span class="bullet">•</span> Index / Project</div>
+    <div class="project-header project-detail-meta">
+      <span class="project-status {% if status != 'active' %}is-muted{% endif %}">
+        {% if status == 'active' %}Active{% elseif status == 'coming-soon' %}Coming soon!{% elseif status == 'archived' %}Archived{% elseif status == 'idea' %}Idea{% else %}{{ status }}{% endif %}
+      </span>
+      {% if links and links.length %}
+      <div class="project-links">
+        {% for link in links %}
+          {% set ext = link.external if link.external is defined else (link.url | isExternalUrl) %}
+          <a href="{{ link.url }}" class="project-link"{% if ext %} target="_blank" rel="noopener"{% endif %}>{{ link.label or "Link" }}{% if ext %} {% include "icons/external.svg" %}{% endif %}</a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    <h1 class="page-title">{{ title }}</h1>
+    {% if summary %}
+    <p class="intro-description">{{ summary }}</p>
+    {% endif %}
+  </header>
+
+  <section class="content-section project-article">
+    {{ content | safe }}
+  </section>
+</article>

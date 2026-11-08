@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title if title else "Ted Moyses" }} | Ted Moyses</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231b4332'/><text x='16' y='22' font-size='14' text-anchor='middle' fill='%23fff8f3' font-family='system-ui' font-weight='600'>TM</text></svg>">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner container">
+      <a href="/" class="site-brand">Ted Moyses</a>
+      <a href="/" class="avatar-badge" aria-label="About">
+        <span class="avatar-letter">TM</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    {{ content | safe }}
+  </main>
+
+  <nav class="bottom-tab-bar" aria-label="Primary navigation">
+    <div class="tab-inner">
+      <a href="/" class="tab-item {% if page.url == '/' %}active{% endif %}">
+        {% include "icons/about.svg" %}
+        <span>About</span>
+      </a>
+      <a href="/history/" class="tab-item {% if page.url == '/history/' %}active{% endif %}">
+        {% include "icons/history.svg" %}
+        <span>History</span>
+      </a>
+      <a href="/projects/" class="tab-item {% if page.url == '/projects/' %}active{% endif %}">
+        {% include "icons/projects.svg" %}
+        <span>Projects</span>
+      </a>
+      <a href="/thoughts/" class="tab-item {% if page.url == '/thoughts/' %}active{% endif %}">
+        {% include "icons/thoughts.svg" %}
+        <span>Thoughts</span>
+      </a>
+    </div>
+  </nav>
+
+</body>
+</html>
