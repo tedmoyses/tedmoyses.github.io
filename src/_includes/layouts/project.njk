@@ -3,7 +3,12 @@ layout: layouts/base.njk
 ---
 <article class="project-detail">
   <header class="page-intro">
-    <div class="meta-mono subhead"><span class="bullet">•</span> Index / Project</div>
+    <div class="meta-mono subhead">
+      <span class="bullet">•</span>
+      <a href="/projects/">Index / Projects</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ title }}</span>
+    </div>
     <div class="project-header project-detail-meta">
       <span class="project-status {% if status != 'active' %}is-muted{% endif %}">
         {% if status == 'active' %}Active{% elseif status == 'coming-soon' %}Coming soon!{% elseif status == 'archived' %}Archived{% elseif status == 'idea' %}Idea{% else %}{{ status }}{% endif %}

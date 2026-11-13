@@ -1,4 +1,5 @@
 {
   "layout": "post.njk",
-  "permalink": "/blog/{{ date | date('YYYY/MM/DD') }}/{{ title | slugify }}/"
+  "permalink": "/blog/{{ date | date('YYYY/MM/DD') }}/{{ title | slugify }}/",
+  "og_type": "article"
 }

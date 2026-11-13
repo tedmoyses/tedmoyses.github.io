@@ -39,8 +39,69 @@ module.exports = function (eleventyConfig) {
     return typeof url === "string" && /^https?:\/\//i.test(url);
   });
 
+  eleventyConfig.addFilter("absoluteUrl", function (path, base) {
+    if (!path) return "";
+    if (/^https?:\/\//i.test(path)) return path;
+    return `${String(base).replace(/\/$/, "")}${path.startsWith("/") ? "" : "/"}${path}`;
+  });
+
+  eleventyConfig.addFilter("rssDate", function (date) {
+    const d = date instanceof Date ? date : new Date(date);
+    if (isNaN(d.getTime())) return "";
+    return d.toUTCString();
+  });
+
+  eleventyConfig.addFilter("xmlEscape", function (value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&apos;");
+  });
+
+  eleventyConfig.addFilter("json", function (value) {
+    return JSON.stringify(value).replace(/</g, "\\u003c");
+  });
+
+  eleventyConfig.addFilter("getSeriesData", function (posts, seriesName, currentUrl) {
+    if (!seriesName || !Array.isArray(posts)) return null;
+
+    const orderOf = (post) => {
+      const n = Number(post.data.series_order);
+      return Number.isFinite(n) ? n : Number.POSITIVE_INFINITY;
+    };
+
+    const seriesPosts = posts
+      .filter((post) => post.data.series === seriesName)
+      .sort((a, b) => {
+        const ao = orderOf(a);
+        const bo = orderOf(b);
+        if (ao !== bo) return ao - bo;
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+      });
+
+    if (seriesPosts.length === 0) return null;
+
+    const currentIndex = seriesPosts.findIndex((post) => post.url === currentUrl);
+    return {
+      posts: seriesPosts,
+      currentIndex,
+      position: currentIndex >= 0 ? currentIndex + 1 : null,
+      total: seriesPosts.length,
+      previous: currentIndex > 0 ? seriesPosts[currentIndex - 1] : null,
+      next:
+        currentIndex >= 0 && currentIndex < seriesPosts.length - 1
+          ? seriesPosts[currentIndex + 1]
+          : null
+    };
+  });
+
   eleventyConfig.addCollection("posts", function (collectionApi) {
-    return collectionApi.getFilteredByGlob("src/blog/posts/*.md").reverse();
+    return collectionApi
+      .getFilteredByGlob("src/blog/posts/*.md")
+      .filter((item) => !item.data.draft && item.data.eleventyExcludeFromCollections !== true)
+      .reverse();
   });
 
   eleventyConfig.addCollection("projects", function (collectionApi) {

@@ -2,8 +2,66 @@
 layout: layouts/base.njk
 ---
 
-<article class="content-section">
-  <p class="blog-date">{{ date | date("YYYY/MM/DD") }}</p>
-  <h2>{{ title }}</h2>
-  {{ content | safe }}
+{% set seriesData = collections.posts | getSeriesData(series, page.url) %}
+
+<article class="content-section post">
+  <header class="post-header">
+    <div class="blog-meta">
+      <time class="blog-date" datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+      {% if seriesData and seriesData.total > 1 %}
+      <span class="series-label">Series · {{ series }} ({{ seriesData.position }}/{{ seriesData.total }})</span>
+      {% endif %}
+    </div>
+    <h1 class="page-title">{{ title }}</h1>
+    {% if summary %}
+    <p class="intro-description">{{ summary }}</p>
+    {% endif %}
+  </header>
+
+  {% if hero_image %}
+  <figure class="post-hero">
+    <img src="{{ hero_image }}" alt="{{ hero_image_alt or title }}" width="{{ hero_image_width or 1200 }}" height="{{ hero_image_height or 630 }}" loading="eager" fetchpriority="high">
+    {% if image_credit %}
+    <figcaption class="meta-mono">
+      {% if image_credit_url %}
+      <a href="{{ image_credit_url }}"{% if image_credit_url | isExternalUrl %} target="_blank" rel="noopener"{% endif %}>{{ image_credit }}</a>
+      {% else %}
+      {{ image_credit }}
+      {% endif %}
+    </figcaption>
+    {% endif %}
+  </figure>
+  {% endif %}
+
+  <div class="post-body">
+    {{ content | safe }}
+  </div>
+
+  {% if seriesData and seriesData.total > 1 %}
+  <nav class="series-nav" aria-label="Series navigation">
+    <div class="series-nav-header">
+      <span class="meta-mono">Series · {{ series }}</span>
+      <span class="meta-mono">{{ seriesData.position }} / {{ seriesData.total }}</span>
+    </div>
+    <ol class="series-list">
+      {% for post in seriesData.posts %}
+      <li{% if post.url == page.url %} class="is-current"{% endif %}>
+        {% if post.url == page.url %}
+        <span>{{ post.data.title }}</span>
+        {% else %}
+        <a href="{{ post.url }}">{{ post.data.title }}</a>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+    <div class="series-links">
+      {% if seriesData.previous %}
+      <a href="{{ seriesData.previous.url }}" class="read-more">← {{ seriesData.previous.data.title }}</a>
+      {% endif %}
+      {% if seriesData.next %}
+      <a href="{{ seriesData.next.url }}" class="read-more">{{ seriesData.next.data.title }} →</a>
+      {% endif %}
+    </div>
+  </nav>
+  {% endif %}
 </article>

@@ -1,20 +1,30 @@
 ---
 layout: layouts/base.njk
 title: Thoughts
+description: Notes, essays and updates on projects, infrastructure and technology.
 permalink: /thoughts/
 ---
 
 <header class="page-intro">
-  <div class="meta-mono subhead"><span class="bullet">•</span> Archive / Notes</div>
+  <div class="meta-mono subhead"><span class="bullet">•</span> Archive / Notes <span class="count">[{{ collections.posts | length }}]</span></div>
   <h1 class="page-title">Thoughts</h1>
 </header>
 
 <section class="content-section">
   {% for post in collections.posts %}
   <article class="blog-entry">
+    {% if post.data.hero_image %}
+    <img class="blog-thumb" src="{{ post.data.hero_image }}" alt="{{ post.data.hero_image_alt or post.data.title }}" width="{{ post.data.hero_image_width or 1200 }}" height="{{ post.data.hero_image_height or 630 }}" loading="lazy">
+    {% endif %}
+    <div class="blog-meta">
+      <time class="blog-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+      {% if post.data.series %}
+      <span class="series-label">Series · {{ post.data.series }}</span>
+      {% endif %}
+    </div>
     <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
-    <p class="blog-date">{{ post.date | date("YYYY/MM/DD") }}</p>
-    <p>{{ post.templateContent | striptags | truncate(200) }}</p>
+    <p>{{ post.data.summary or post.templateContent | striptags | truncate(200) }}</p>
+    <a href="{{ post.url }}" class="read-more">Read entry {% include "icons/arrow-right.svg" %}</a>
   </article>
   {% else %}
   <p>Nothing written yet. Stay tuned.</p>
