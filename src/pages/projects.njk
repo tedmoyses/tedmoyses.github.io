@@ -6,7 +6,11 @@ permalink: /projects/
 ---
 
 <header class="page-intro">
-  <div class="meta-mono subhead"><span class="bullet">•</span> Index / Projects <span class="count">[{{ collections.projects | length }}]</span></div>
+  <div class="meta-mono subhead">
+    <span class="bullet">•</span>
+    <span>Index / <span aria-current="page">Projects</span></span>
+    <span class="count">[{{ collections.projects | length }}]</span>
+  </div>
   <h1 class="page-title">Projects</h1>
   <p class="intro-description">Here I have listed some of the side projects I am working on and perhaps some ideas for future projects too. 
   These projects represent what I do to keep learning and improving how I build and ship software</p>
@@ -30,6 +34,13 @@ permalink: /projects/
     </div>
     <h3><a href="{{ project.url }}">{{ project.data.title }}</a></h3>
     <p>{{ project.data.summary or project.templateContent | striptags | truncate(180) }}</p>
+    {% if project.data.stack and project.data.stack.length %}
+    <ul class="project-stack" aria-label="Technology stack">
+      {% for tech in project.data.stack %}
+      <li>{{ tech }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
     <a href="{{ project.url }}" class="read-more">View project {% include "icons/arrow-right.svg" %}</a>
   </article>
   {% endfor %}

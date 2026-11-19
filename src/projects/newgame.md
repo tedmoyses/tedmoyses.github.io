@@ -2,6 +2,8 @@
 title: Unannounced
 order: 3
 status: coming-soon
+stack:
+  - Laravel
 summary: A new concept in social gaming, simple and fun to play.
 
 ---

@@ -2,6 +2,9 @@
 title: Paper plane
 order: 5
 status: archived
+stack:
+  - FreeCAD
+  - SVG
 links:
   - label: SVG
     url: /assets/images/plane.svg

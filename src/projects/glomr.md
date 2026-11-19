@@ -2,6 +2,9 @@
 title: Glomr
 order: 4
 status: active
+stack:
+  - PHP
+  - Laravel Blade
 links:
   - label: GitHub
     url: https://github.com/tedmoyses/glomr

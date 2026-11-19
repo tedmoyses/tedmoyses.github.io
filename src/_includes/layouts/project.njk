@@ -5,9 +5,7 @@ layout: layouts/base.njk
   <header class="page-intro">
     <div class="meta-mono subhead">
       <span class="bullet">•</span>
-      <a href="/projects/">Index / Projects</a>
-      <span aria-hidden="true">/</span>
-      <span aria-current="page">{{ title }}</span>
+      <span>Index / <a href="/projects/">Projects</a></span>
     </div>
     <div class="project-header project-detail-meta">
       <span class="project-status {% if status != 'active' %}is-muted{% endif %}">
@@ -25,6 +23,13 @@ layout: layouts/base.njk
     <h1 class="page-title">{{ title }}</h1>
     {% if summary %}
     <p class="intro-description">{{ summary }}</p>
+    {% endif %}
+    {% if stack and stack.length %}
+    <ul class="project-stack" aria-label="Technology stack">
+      {% for tech in stack %}
+      <li>{{ tech }}</li>
+      {% endfor %}
+    </ul>
     {% endif %}
   </header>
 

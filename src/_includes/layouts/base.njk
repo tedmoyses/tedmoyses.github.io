@@ -105,5 +105,9 @@
     </div>
   </nav>
 
+  {% if isProduction and analytics.cloudflareToken %}
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ analytics.cloudflareToken }}"}'></script>
+  {% endif %}
+
 </body>
 </html>

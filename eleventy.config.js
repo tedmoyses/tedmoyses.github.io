@@ -2,6 +2,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
 
   eleventyConfig.addGlobalData("now", () => new Date());
+  eleventyConfig.addGlobalData("isProduction", () => process.env.ELEVENTY_RUN_MODE === "build");
 
   eleventyConfig.addFilter("slugify", function (str) {
     return str

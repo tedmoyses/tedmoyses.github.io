@@ -271,12 +271,12 @@ img, svg {
 .tab-item.active svg { stroke-width: 2; }
 
 .page-intro { padding: var(--space-xl) 0 var(--space-lg); border-bottom: 1px solid var(--color-border-subtle); margin-bottom: var(--space-lg); }
-.page-intro .subhead, .hero .subhead { display: flex; align-items: center; gap: 6px; margin-bottom: var(--space-xs); flex-wrap: wrap; }
-.page-intro .bullet, .hero .bullet { color: var(--color-primary-light); }
+.page-intro .subhead, .hero .subhead, .post-header .subhead { display: flex; align-items: center; gap: 6px; margin-bottom: var(--space-xs); flex-wrap: wrap; }
+.page-intro .bullet, .hero .bullet, .post-header .bullet { color: var(--color-primary-light); }
 .page-intro .count { margin-left: auto; color: var(--color-text-dim); letter-spacing: 0.04em; }
-.page-intro .subhead a { color: var(--color-text-muted); }
-.page-intro .subhead a:hover { color: var(--color-primary); text-decoration: none; }
-.page-intro .subhead [aria-current="page"] { color: var(--color-text-main); }
+.page-intro .subhead a, .post-header .subhead a { color: var(--color-text-muted); }
+.page-intro .subhead a:hover, .post-header .subhead a:hover { color: var(--color-primary); text-decoration: none; }
+.page-intro .subhead [aria-current="page"], .post-header .subhead [aria-current="page"] { color: var(--color-text-main); }
 
 .feed-link {
   display: inline-flex;
@@ -397,6 +397,25 @@ img, svg {
 .project-detail-meta { margin-bottom: var(--space-xs); }
 .project-article { padding-top: 0; }
 .project p:last-child { margin-bottom: 0; }
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  padding: 0;
+  margin: var(--space-xs) 0 0;
+}
+.project-stack li {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-border-subtle);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
 .project em {
   display: inline-block; font-style: normal; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em;
   text-transform: uppercase; color: var(--color-text-muted); background: var(--color-tag-bg); padding: 2px 8px; border-radius: 999px;

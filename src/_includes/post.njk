@@ -6,6 +6,10 @@ layout: layouts/base.njk
 
 <article class="content-section post">
   <header class="post-header">
+    <div class="meta-mono subhead">
+      <span class="bullet">•</span>
+      <span>Index / <a href="/thoughts/">Thoughts</a></span>
+    </div>
     <div class="blog-meta">
       <time class="blog-date" datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
       {% if seriesData and seriesData.total > 1 %}

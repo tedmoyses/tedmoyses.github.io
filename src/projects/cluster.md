@@ -2,6 +2,9 @@
 title: Home lab cluster
 order: 2
 status: active
+stack:
+  - Talos Linux
+  - Kubernetes
 links:
   - label: GitHub
     url: https://github.com/tedmoyses/homelab

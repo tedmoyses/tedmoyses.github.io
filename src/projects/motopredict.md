@@ -2,6 +2,8 @@
 title: MotoPredict
 order: 1
 status: active
+stack:
+  - Laravel
 summary: An exciting motorsport fan engagement platform, choose your squad and compete to win points and bragging rights!
 links: 
   - label: Website
