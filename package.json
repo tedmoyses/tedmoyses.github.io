@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "build": "npx @11ty/eleventy",
-    "dev": "npx @11ty/eleventy --serve"
+    "dev": "npx @11ty/eleventy --serve",
+    "new:post": "node scripts/new-content.js post",
+    "new:project": "node scripts/new-content.js project",
+    "image:hero": "node scripts/new-image.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.5"

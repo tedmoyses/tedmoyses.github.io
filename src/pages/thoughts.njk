@@ -17,8 +17,16 @@ permalink: /thoughts/
 <section class="content-section">
   {% for post in collections.posts %}
   <article class="blog-entry">
-    {% if post.data.hero_image %}
-    <img class="blog-thumb" src="{{ post.data.hero_image }}" alt="{{ post.data.hero_image_alt or post.data.title }}" width="{{ post.data.hero_image_width or 1200 }}" height="{{ post.data.hero_image_height or 630 }}" loading="lazy">
+    {% set cardImage = post.data.hero_image_thumb or post.data.hero_image %}
+    {% if cardImage %}
+      {% if post.data.hero_image_thumb %}
+        {% set cardWidth = post.data.hero_image_thumb_width or 800 %}
+        {% set cardHeight = post.data.hero_image_thumb_height or 450 %}
+      {% else %}
+        {% set cardWidth = post.data.hero_image_width or 1200 %}
+        {% set cardHeight = post.data.hero_image_height or 630 %}
+      {% endif %}
+      <img class="blog-thumb" src="{{ cardImage }}" alt="{{ post.data.hero_image_alt or post.data.title }}" width="{{ cardWidth }}" height="{{ cardHeight }}" loading="lazy">
     {% endif %}
     <div class="blog-meta">
       <time class="blog-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
